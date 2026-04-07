@@ -1,90 +1,198 @@
-import { createTheme } from '@mui/material/styles';
-import { responsiveFontSizes } from '@mui/material';
+import { createTheme } from '@mui/material/styles'
+import { responsiveFontSizes } from '@mui/material'
+
+const tenosia = {
+  background: '#111827',
+  surface: '#0E131F',
+  panel: '#1F2937',
+  panelDeep: '#1C2634',
+  muted: '#B5B8BD',
+  caption: '#879DAE',
+  accentBlue: '#3B82F6',
+  accentCyan: '#0284C7',
+  accentTeal: '#09ADA9',
+  accentGreen: '#22C55E',
+  highlight: '#FFBB54',
+  infoBlue: '#3298DC',
+  legacyPurple: '#374C98',
+}
 
 const theme = responsiveFontSizes(
   createTheme({
     palette: {
-      blue: '#3298dc',
-
-      alternate: {
-        main: '#1a2138',
-        dark: '#152951',
-      },
-      cardShadow: 'rgba(0, 0, 0, .11)',
-      common: {
-        black: '#000',
-        white: '#fff',
-        yellow: '#FFBB54',
-        green: '#00ADA3',
-        purple: '#374C98',
-        blue: '#3298dc',
-        success: '#d1fae5',
-      },
-      //   mode: 'dark',
-      success: {
-        main: '#d1fae5',
-      },
-      yellow: {
-        main: '#fdfaea',
-      },
+      mode: 'dark',
       primary: {
-        main: '#1877f3',
-        light: '#2670d1',
-        dark: '#0965de',
-        contrastText: '#FFF',
+        main: tenosia.accentBlue,
+        light: '#60A5FA',
+        dark: '#2563EB',
+        contrastText: '#FFFFFF',
       },
       secondary: {
-        light: '#43ccc9',
-        main: '#09ADA9',
-        dark: '#0db5b1',
+        main: tenosia.accentTeal,
+        light: '#43CCC9',
+        dark: '#0DB5B1',
+        contrastText: '#FFFFFF',
+      },
+      success: {
+        main: tenosia.accentGreen,
+        contrastText: '#FFFFFF',
+      },
+      warning: {
+        main: tenosia.highlight,
+        contrastText: '#1F2937',
+      },
+      info: {
+        main: tenosia.infoBlue,
+        contrastText: '#FFFFFF',
+      },
+      error: {
+        main: '#F87171',
         contrastText: '#FFFFFF',
       },
       text: {
-        primary: '#000',
-        secondary: '#000',
+        primary: '#FFFFFF',
+        secondary: tenosia.muted,
+        disabled: 'rgba(181, 184, 189, 0.5)',
       },
-      // divider: '#152951',
       background: {
-        paper: '#171717',
-        // paper: 'linear-gradient(rgb(16, 137, 255), rgb(0, 21, 36))',
-        default: '#264469',
-        level2: '#333',
-        level1: '#2D3748',
+        default: tenosia.background,
+        paper: tenosia.panel,
+      },
+      divider: 'rgba(181, 184, 189, 0.24)',
+      action: {
+        active: '#FFFFFF',
+        hover: 'rgba(255, 255, 255, 0.08)',
+        selected: 'rgba(255, 255, 255, 0.12)',
+        disabled: 'rgba(255, 255, 255, 0.3)',
+        disabledBackground: 'rgba(255, 255, 255, 0.12)',
+      },
+      common: {
+        black: '#000000',
+        white: '#FFFFFF',
       },
     },
+    tenosia,
     layout: {
       contentWidth: 1236,
     },
     typography: {
-        // eslint-disable-next-line quotes
-        fontFamily: ['Roboto', 'Arial', 'sans-serif'],
-        fontWeightLight: 300,
-        fontWeightRegular: 400,
-        fontWeightMedium: 500,
-        fontWeightBold: 700,
+      fontFamily: [
+        'Poppins',
+        'Roboto',
+        'Helvetica',
+        'Arial',
+        'sans-serif',
+      ].join(','),
+      fontWeightLight: 300,
+      fontWeightRegular: 400,
+      fontWeightMedium: 500,
+      fontWeightBold: 700,
+      h1: {
+        fontWeight: 700,
+        lineHeight: 1.2,
+      },
+      h2: {
+        fontWeight: 700,
+        lineHeight: 1.25,
+      },
+      h3: {
+        fontWeight: 600,
+        lineHeight: 1.3,
+      },
+      h4: {
+        fontWeight: 600,
+        lineHeight: 1.35,
+      },
+      h5: {
+        fontWeight: 600,
+        lineHeight: 1.4,
+      },
+      h6: {
+        fontWeight: 600,
+        lineHeight: 1.45,
+      },
+      body1: {
         lineHeight: 1.5,
-        h1: {
-          fontSize: '1.2rem'
-        },
-     
+      },
+      body2: {
+        lineHeight: 1.5,
+        color: tenosia.caption,
+      },
+      button: {
+        fontWeight: 600,
+        textTransform: 'none',
+      },
+    },
+    shape: {
+      borderRadius: 12,
     },
     zIndex: {
       appBar: 1200,
       drawer: 1100,
     },
     components: {
-      MuiTouchRipple: false,
+      MuiButton: {
+        defaultProps: {
+          disableElevation: true,
+        },
+        styleOverrides: {
+          root: {
+            borderRadius: 12,
+            fontWeight: 600,
+          },
+          containedPrimary: {
+            backgroundColor: tenosia.accentBlue,
+            '&:hover': {
+              backgroundColor: '#2563EB',
+            },
+          },
+          outlined: {
+            borderWidth: 2,
+            '&:hover': {
+              borderWidth: 2,
+            },
+          },
+        },
+      },
       MuiTextField: {
         styleOverrides: {
           root: {
-            boxShadow: 'none',
+            '& .MuiOutlinedInput-root': {
+              borderRadius: 12,
+            },
+          },
+        },
+      },
+      MuiOutlinedInput: {
+        styleOverrides: {
+          root: {
+            '& fieldset': {
+              borderColor: 'rgba(181, 184, 189, 0.35)',
+            },
+            '&:hover fieldset': {
+              borderColor: 'rgba(181, 184, 189, 0.55)',
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: tenosia.accentCyan,
+            },
+          },
+        },
+      },
+      MuiInputLabel: {
+        styleOverrides: {
+          root: {
+            fontWeight: 600,
+            fontSize: '14px',
+            color: tenosia.muted,
+            '&.Mui-focused': {
+              color: tenosia.accentCyan,
+            },
           },
         },
       },
       MuiListItemButton: {
         defaultProps: {
-          // The props to change the default for.
-          disableRipple: true, // No more ripple!
+          disableRipple: true,
         },
       },
       MuiListItemIcon: {
@@ -94,28 +202,15 @@ const theme = responsiveFontSizes(
           },
         },
       },
-      MuiInputLabel: {
+      MuiPaper: {
         styleOverrides: {
           root: {
-            fontWeight: 600,
-            fontSize: '14px',
+            backgroundImage: 'none',
           },
-        },
-      },
-      MuiButton: {
-        styleOverrides: {
-          label: {
-            fontWeight: 600,
-          },
-
-          containedSecondary: {},
         },
       },
     },
-    // shape: {
-    //   borderRadius: 15,
-    // },
   }),
-);
+)
 
-export default theme;
+export default theme
