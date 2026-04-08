@@ -1,62 +1,76 @@
-import { Box, Container, Grid } from '@mui/material'
-import Chip from '@mui/material/Chip'
+import { Box, Container, Grid, Chip } from '@mui/material'
 import Image from 'next/image'
 import Images from '../../public/images/Images'
+import { useTheme } from '@mui/material/styles'
+
 export default function Contact() {
+  const theme = useTheme()
+
   return (
-    <>
-      <div className="bg-[#111827]">
-        <Container>
-          <Grid container className="py-4">
-            <Grid item md={6} xs={12} className="py-4">
-              <Box>
-                <h1 className="py-3 text-3xl font-bold text-white">
-                  Never miss a drop!
-                </h1>
+    <Box sx={{ bgcolor: theme.tenosia.background }}>
+      <Container>
+        <Grid container className="py-4">
+          <Grid item md={6} xs={12} className="py-4">
+            <Box>
+              <Box
+                component="h1"
+                sx={{ py: 3, typography: 'h4', fontWeight: 700, color: 'text.primary', m: 0 }}
+              >
+                Never miss a drop!
               </Box>
-              <Box>
-                <span className=" text-[#879DAE]">
-                  Subcribe to our super-exclusive drop list and be the first to{' '}
-                  <br />
-                  know abour upcoming drops
-                </span>
+            </Box>
+            <Box>
+              <Box component="span" sx={{ color: theme.tenosia.caption }}>
+                Subscribe to our super-exclusive drop list and be the first to
+                know about upcoming drops
               </Box>
-              <Box className="mt-6">
-                <Chip
-                  sx={{
-                    variant: 'contained',
-                  }}
-                  label="01"
-                  className=" bg-[#DCFCE7]"
-                />
-                <span className="px-2 text-white">Get More Discount</span>
+            </Box>
+            <Box className="mt-6">
+              <Chip
+                label="01"
+                sx={{ bgcolor: '#DCFCE7', color: '#166534', fontWeight: 600 }}
+              />
+              <Box component="span" sx={{ px: 2, color: 'text.primary' }}>
+                Get More Discount
               </Box>
-              <Box className="mt-6">
-                <Chip
-                  sx={{
-                    variant: 'contained',
-                  }}
-                  label="01"
-                  className=" bg-[#DCFCE7]"
-                />
-                <span className="px-2 text-white">Get Premium Magazine</span>
+            </Box>
+            <Box className="mt-6">
+              <Chip
+                label="01"
+                sx={{ bgcolor: '#DCFCE7', color: '#166534', fontWeight: 600 }}
+              />
+              <Box component="span" sx={{ px: 2, color: 'text.primary' }}>
+                Get Premium Magazine
               </Box>
-              <div className="w-full py-3">
-                <input
-                  type="text"
-                  placeholder="Enter Your Email"
-                  className="1px solid silver my-4 rounded-xl border bg-transparent p-1.5 text-white md:my-0"
-                />
-              </div>
-            </Grid>
-            <Grid item md={6} xs={12}>
-              <Box>
-                <Image src={Images.book} />
-              </Box>
-            </Grid>
+            </Box>
+            <Box className="w-full py-3">
+              <Box
+                component="input"
+                type="text"
+                placeholder="Enter Your Email"
+                sx={{
+                  my: { xs: 2, md: 0 },
+                  width: 1,
+                  borderRadius: 2,
+                  border: '1px solid',
+                  borderColor: 'divider',
+                  bgcolor: 'transparent',
+                  color: 'text.primary',
+                  px: 1.5,
+                  py: 0.75,
+                  outline: 'none',
+                  '&::placeholder': { color: 'text.secondary' },
+                }}
+              />
+            </Box>
           </Grid>
-        </Container>
-      </div>
-    </>
+          <Grid item md={6} xs={12}>
+            <Box>
+              <Image src={Images.book} alt="" />
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
   )
 }

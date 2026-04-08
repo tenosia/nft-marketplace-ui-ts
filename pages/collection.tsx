@@ -6,24 +6,28 @@ import FacebookIcon from '@mui/icons-material/Facebook'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import Link from 'next/link'
-export default function Collection() {
-  const Collection = [
-    {
-      title: 'Floor Price',
-      amount: '$295,481.62',
-      num: '+2.11%',
-    },
-    {
-      title: 'Volume',
-      amount: '$295,481.62',
-      num: 'total',
-    },
-    {
-      title: 'Latest Price',
-      amount: '$295,481.62',
-      num: '---',
-    },
-  ]
+import { useTheme } from '@mui/material/styles'
+
+const collectionStats = [
+  {
+    title: 'Floor Price',
+    amount: '$295,481.62',
+    num: '+2.11%',
+  },
+  {
+    title: 'Volume',
+    amount: '$295,481.62',
+    num: 'total',
+  },
+  {
+    title: 'Latest Price',
+    amount: '$295,481.62',
+    num: '---',
+  },
+]
+
+export default function CollectionPage() {
+  const theme = useTheme()
 
   return (
     <>
@@ -31,32 +35,38 @@ export default function Collection() {
 
       <div>
         <Box>
-          <Image src={Images.collectionpage} />
+          <Image src={Images.collectionpage} alt="" />
         </Box>
         <Box>
           <Container>
-            <Box className=" flex -translate-y-20 items-center justify-center rounded-2xl border bg-[#111827]">
+            <Box
+              className="flex -translate-y-20 items-center justify-center rounded-2xl border"
+              sx={{
+                bgcolor: theme.tenosia.background,
+                borderColor: 'divider',
+              }}
+            >
               <Grid container spacing={3}>
                 <Grid item md={3}>
                   <Box className="p-5">
                     <Box>
-                      <Image src={Images.robot} className="rounded-2xl" />
+                      <Image src={Images.robot} className="rounded-2xl" alt="" />
                     </Box>
                     <Box className="flex items-center justify-center p-3">
                       <Stack direction="row" spacing={6}>
                         <Link href="/">
                           <a>
-                            <FacebookIcon sx={{ color: 'white' }} />
+                            <FacebookIcon sx={{ color: 'common.white' }} />
                           </a>
                         </Link>
                         <Link href="/">
                           <a>
-                            <TwitterIcon sx={{ color: 'white' }} />
+                            <TwitterIcon sx={{ color: 'common.white' }} />
                           </a>
                         </Link>
                         <Link href="/">
                           <a>
-                            <InstagramIcon sx={{ color: 'white' }} />
+                            <InstagramIcon sx={{ color: 'common.white' }} />
                           </a>
                         </Link>
                       </Stack>
@@ -66,32 +76,62 @@ export default function Collection() {
                 <Grid item md={9}>
                   <Box className="p-5">
                     <Box>
-                      <h1 className="text-4xl font-bold text-white">
+                      <Box
+                        component="h1"
+                        sx={{ typography: 'h4', fontWeight: 700, color: 'text.primary', m: 0 }}
+                      >
                         Awesome NFTs collection
-                      </h1>
-                      <span className="text-md text-[#B5B8BD]">
+                      </Box>
+                      <Box
+                        component="span"
+                        sx={{
+                          display: 'block',
+                          typography: 'body2',
+                          color: theme.tenosia.muted,
+                          mt: 1,
+                        }}
+                      >
                         Karafuru is home to 5,555 generative arts where colors
-                        reign supreme. Leave the drab <br /> reality and enter
-                        the world of Karafuru by Museum of Toys.
-                      </span>
+                        reign supreme. Leave the drab reality and enter the
+                        world of Karafuru by Museum of Toys.
+                      </Box>
                     </Box>
                     <Box className="py-3">
                       <Grid container>
-                        {Collection.map((item, index) => (
-                          <Grid item md={3} xs={12} className="m-2">
+                        {collectionStats.map((item) => (
+                          <Grid item md={3} xs={12} className="m-2" key={item.title}>
                             <Box
-                              sx={{ border: '0.01px solid #B5B8BD' }}
+                              sx={{
+                                border: '1px solid',
+                                borderColor: theme.tenosia.muted,
+                              }}
                               className="rounded-xl"
                             >
-                              <h6 className="py-4 text-center text-white">
+                              <Box
+                                component="h6"
+                                sx={{ py: 4, textAlign: 'center', typography: 'subtitle2', color: 'text.primary', m: 0 }}
+                              >
                                 {item.title}
-                              </h6>
-                              <h6 className="py-1 text-center text-white">
+                              </Box>
+                              <Box
+                                component="h6"
+                                sx={{ py: 1, textAlign: 'center', typography: 'subtitle2', color: 'text.primary', m: 0 }}
+                              >
                                 {item.amount}
-                              </h6>
-                              <h6 className="pt-1 pb-5 text-center text-green-500">
+                              </Box>
+                              <Box
+                                component="h6"
+                                sx={{
+                                  pt: 1,
+                                  pb: 5,
+                                  textAlign: 'center',
+                                  typography: 'subtitle2',
+                                  color: 'success.main',
+                                  m: 0,
+                                }}
+                              >
                                 {item.num}
-                              </h6>
+                              </Box>
                             </Box>
                           </Grid>
                         ))}

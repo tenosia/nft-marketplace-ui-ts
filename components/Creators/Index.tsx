@@ -2,8 +2,11 @@ import { Box, Button, Container, Grid, Stack } from '@mui/material'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import Image from 'next/image'
 import Images from '../../public/images/Images'
-import Avatar from '@mui/material/Avatar'
+import { useTheme } from '@mui/material/styles'
+
 export default function Creators() {
+  const theme = useTheme()
+
   const Data = [
     {
       img1: Images.c1,
@@ -42,156 +45,114 @@ export default function Creators() {
         'X-Metaverse is a Star Wars game based on NFT+ blockchain exploration, mining, trading ...',
     },
   ]
+
+  const card = (item: (typeof Data)[0], index: number) => (
+    <Grid item sm={12} xs={12} md={3} key={index} className="p-3">
+      <Box
+        className="rounded-2xl bg-transparent text-white"
+        sx={{
+          border: '1px solid',
+          borderColor: 'divider',
+        }}
+      >
+        <Box className="flex p-3">
+          <Stack direction="row">
+            <Image src={item.img1} alt="" className="rounded-xl" />
+            <Image src={item.img2} alt="" className="rounded-xl" />
+            <Image src={item.img3} alt="" className="rounded-xl" />
+          </Stack>
+        </Box>
+        <Box className="flex -translate-y-6 items-center justify-center">
+          <Image
+            src={item.img}
+            alt=""
+            width={40}
+            height={40}
+            className="rounded-full"
+          />
+        </Box>
+        <Box className="flex justify-between">
+          <Box className="flex flex-col justify-between px-2 text-xs" sx={{ color: 'text.primary' }}>
+            <Box component="span" className="text-xl">
+              {item.name}
+            </Box>
+            <Box component="span" className="text-md">
+              @ Creator
+            </Box>
+          </Box>
+          <Box>
+            <Button variant="contained" color="primary" className="mx-2 rounded-3xl">
+              Follow
+            </Button>
+          </Box>
+        </Box>
+
+        <Box className="py-6">
+          <Box
+            component="p"
+            sx={{
+              typography: 'body2',
+              color: theme.tenosia.caption,
+              px: 2,
+              m: 0,
+            }}
+          >
+            {item.description}
+          </Box>
+        </Box>
+      </Box>
+    </Grid>
+  )
+
   return (
-    <>
-      <div className="bg-[#111827]">
-        <Container>
-          <Box className=" block justify-between py-[15vh] md:flex">
-            <h1 className=" text-4xl font-bold text-white">
-              Popular <span className="text-green-500">Creator</span>
-            </h1>
-            <Box>
-              <Button
-                variant="outlined"
-                className="my-3 rounded-2xl border-2 border-white bg-transparent text-white md:my-0"
-              >
-                sort order <KeyboardArrowDownIcon />
-              </Button>
+    <Box sx={{ bgcolor: theme.tenosia.background }}>
+      <Container>
+        <Box className="block justify-between py-[15vh] md:flex">
+          <Box component="h1" sx={{ typography: 'h4', fontWeight: 700, color: 'text.primary', m: 0 }}>
+            Popular{' '}
+            <Box component="span" sx={{ color: 'success.main' }}>
+              Creator
             </Box>
           </Box>
-          <Box className="py-[8vh]">
-            <Box>
-              <Grid container>
-                {Data.map((item, index) => (
-                  <Grid item sm={12} xs={12} md={3} className="p-3">
-                    <Box
-                      className=" rounded-2xl bg-transparent text-white"
-                      sx={{ border: '1px solid silver' }}
-                    >
-                      <Box className="flex p-3 ">
-                        <Stack direction="row">
-                          <Image
-                            src={Images.c1}
-                            alt=""
-                            className="rounded-xl"
-                          />
-                          <Image
-                            src={Images.c2}
-                            alt=""
-                            className="rounded-xl"
-                          />
-                          <Image
-                            src={Images.c3}
-                            alt=""
-                            className="rounded-xl"
-                          />
-                        </Stack>
-                      </Box>
-                      <Box className="flex -translate-y-6 items-center justify-center">
-                        <Image
-                          src={Images.profile}
-                          alt=""
-                          width="40"
-                          height="40"
-                          className="rounded-full "
-                        />
-                      </Box>
-                      <Box className="flex justify-between">
-                        <Box className="flex flex-col justify-between px-2 text-xs text-white">
-                          <span className="text-xl">Amaris Pitt</span>
-                          <span className="text-md">@ Creaator</span>
-                        </Box>
-                        <Box>
-                          <Button
-                            variant="contained"
-                            className="mx-2 rounded-3xl bg-blue-500"
-                          >
-                            Follow
-                          </Button>
-                        </Box>
-                      </Box>
-
-                      <Box className="py-6">
-                        <h1 className="text-md px-2  text-[#879DAE]">
-                          X-Metaverse is a Star Wars game based on NFT+
-                          blockchain exploration, mining, trading ...
-                        </h1>
-                      </Box>
-                    </Box>
-                  </Grid>
-                ))}
-              </Grid>
-            </Box>
-
-            <Box>
-              <Grid container>
-                {Data.map((item, index) => (
-                  <Grid item sm={12} xs={12} md={3} className="p-3">
-                    <Box
-                      className=" rounded-2xl bg-transparent text-white"
-                      sx={{ border: '1px solid silver' }}
-                    >
-                      <Box className="flex p-3 ">
-                        <Stack direction="row">
-                          <Image src={Images.c1} className="rounded-xl" />
-                          <Image src={Images.c2} className="rounded-xl" />
-                          <Image src={Images.c3} className="rounded-xl" />
-                        </Stack>
-                      </Box>
-                      <Box className="flex -translate-y-6 items-center justify-center">
-                        <Image
-                          src={Images.profile}
-                          width="40"
-                          height="40"
-                          className="rounded-full "
-                        />
-                      </Box>
-                      <Box className="flex justify-between">
-                        <Box className="flex flex-col justify-between px-2 text-xs text-white">
-                          <span className="text-xl">Amaris Pitt</span>
-                          <span className="text-md">@ Creaator</span>
-                        </Box>
-                        <Box>
-                          <Button
-                            variant="contained"
-                            className="mx-2 rounded-3xl bg-blue-500"
-                          >
-                            Follow
-                          </Button>
-                        </Box>
-                      </Box>
-
-                      <Box className="py-6">
-                        <h1 className="text-md px-2  text-[#879DAE]">
-                          X-Metaverse is a Star Wars game based on NFT+
-                          blockchain exploration, mining, trading ...
-                        </h1>
-                      </Box>
-                    </Box>
-                  </Grid>
-                ))}
-              </Grid>
-            </Box>
+          <Box>
+            <Button
+              variant="outlined"
+              className="my-3 rounded-2xl md:my-0"
+              sx={{
+                borderWidth: 2,
+                borderColor: 'common.white',
+                color: 'common.white',
+                '&:hover': { borderWidth: 2, borderColor: 'common.white', bgcolor: 'rgba(255,255,255,0.04)' },
+              }}
+              endIcon={<KeyboardArrowDownIcon />}
+            >
+              sort order
+            </Button>
           </Box>
+        </Box>
+        <Box className="py-[8vh]">
+          <Grid container>{Data.map((item, index) => card(item, index))}</Grid>
+        </Box>
 
-          <Box className="  flex items-center justify-center py-3 text-white">
-            <Stack direction="row" spacing={2}>
-              <Button
-                variant="outlined"
-                className="rounded-2xl border border-white  bg-transparent text-white"
-              >
-                Show More
-              </Button>
-              <Button
-                variant="contained"
-                className=" rounded-2xl bg-blue-500 text-white"
-              >
-                Become a author
-              </Button>
-            </Stack>
-          </Box>
-        </Container>
-      </div>
-    </>
+        <Box className="flex items-center justify-center py-3" sx={{ color: 'text.primary' }}>
+          <Stack direction="row" spacing={2}>
+            <Button
+              variant="outlined"
+              className="rounded-2xl"
+              sx={{
+                borderColor: 'common.white',
+                color: 'common.white',
+                '&:hover': { borderColor: 'common.white', bgcolor: 'rgba(255,255,255,0.04)' },
+              }}
+            >
+              Show More
+            </Button>
+            <Button variant="contained" color="primary" className="rounded-2xl">
+              Become an author
+            </Button>
+          </Stack>
+        </Box>
+      </Container>
+    </Box>
   )
 }

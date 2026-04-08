@@ -5,89 +5,96 @@ import FacebookIcon from '@mui/icons-material/Facebook'
 import YouTubeIcon from '@mui/icons-material/YouTube'
 import TelegramIcon from '@mui/icons-material/Telegram'
 import TwitterIcon from '@mui/icons-material/Twitter'
+import { useTheme } from '@mui/material/styles'
+
 export default function Footer() {
+  const theme = useTheme()
+  const muted = { color: theme.tenosia.muted }
+
   return (
-    <>
-      <div className="bg-[#111827] py-[8vh]">
-        <Box borderTop="0.5px solid white">
-          <Container>
-            <Grid container className="py-[15vh]">
-              <Grid item md={2.4}>
-                <Box>
-                  <Image src={Images.logo} alt="" />
-                </Box>
-                <Box className="pt-2">
-                  <Stack spacing={1}>
-                    <span className="text-[#B5B8BD]">
-                      {' '}
-                      <FacebookIcon className="rounded-full" /> FaceBook
-                    </span>
-                    <span className="text-[#B5B8BD]">
-                      {' '}
-                      <YouTubeIcon className="rounded-full" /> Youtube
-                    </span>
-                    <span className="text-[#B5B8BD]">
-                      {' '}
-                      <TelegramIcon className="rounded-full" /> Telegram
-                    </span>
-                    <span className="text-[#B5B8BD]">
-                      {' '}
-                      <TwitterIcon className="rounded-full" /> Twitter
-                    </span>
-                  </Stack>
-                </Box>
-                <Box className="py-3"></Box>
-              </Grid>
-              <Grid item md={2.4}>
-                <h1 className="text-lg text-white">Getting Started</h1>
-                <Stack spacing={1} className="py-2">
-                  <span className="text-[#B5B8BD]">Installation</span>
-                  <span className="text-[#B5B8BD]">Release Notes</span>
-                  <span className="text-[#B5B8BD]">Upgrade Guide</span>
-                  <span className="text-[#B5B8BD]">Browser Suppport</span>
-                  <span className="text-[#B5B8BD]">Editor Support</span>
-                  <span className="text-[#B5B8BD]">Dark Mode</span>
+    <Box sx={{ bgcolor: theme.tenosia.background, py: '8vh' }}>
+      <Box sx={{ borderTop: '0.5px solid', borderColor: 'divider' }}>
+        <Container>
+          <Grid container className="py-[15vh]">
+            <Grid item md={2.4}>
+              <Box>
+                <Image src={Images.logo} alt="" />
+              </Box>
+              <Box className="pt-2">
+                <Stack spacing={1}>
+                  <Box component="span" sx={{ ...muted, display: 'inline-flex', alignItems: 'center', gap: 0.5 }}>
+                    <FacebookIcon fontSize="small" /> Facebook
+                  </Box>
+                  <Box component="span" sx={{ ...muted, display: 'inline-flex', alignItems: 'center', gap: 0.5 }}>
+                    <YouTubeIcon fontSize="small" /> Youtube
+                  </Box>
+                  <Box component="span" sx={{ ...muted, display: 'inline-flex', alignItems: 'center', gap: 0.5 }}>
+                    <TelegramIcon fontSize="small" /> Telegram
+                  </Box>
+                  <Box component="span" sx={{ ...muted, display: 'inline-flex', alignItems: 'center', gap: 0.5 }}>
+                    <TwitterIcon fontSize="small" /> Twitter
+                  </Box>
                 </Stack>
-              </Grid>
-              <Grid item md={2.4}>
-                <h1 className="text-lg text-white"> Explore</h1>
-                <Stack spacing={1} className="py-2">
-                  <span className="text-[#B5B8BD]">Design Feature</span>
-                  <span className="text-[#B5B8BD]">Prototyping</span>
-                  <span className="text-[#B5B8BD]">Design System</span>
-                  <span className="text-[#B5B8BD]">Pricing</span>
-                  <span className="text-[#B5B8BD]">Customer </span>
-                  <span className="text-[#B5B8BD]">Security</span>
-                </Stack>
-              </Grid>
-
-              <Grid item md={2.4}>
-                <h1 className="text-lg text-white"> Resource</h1>
-                <Stack spacing={1} className="py-2">
-                  <span className="text-[#B5B8BD]">Best Practice</span>
-                  <span className="text-[#B5B8BD]">Support</span>
-                  <span className="text-[#B5B8BD]">Developers</span>
-                  <span className="text-[#B5B8BD]">Learn Design</span>
-                  <span className="text-[#B5B8BD]">What's New </span>
-                  <span className="text-[#B5B8BD]">Release</span>
-                </Stack>
-              </Grid>
-
-              <Grid item md={2.4}>
-                <h1 className="text-lg text-white"> Community</h1>
-                <Stack spacing={1} className="py-2">
-                  <span className="text-[#B5B8BD]">Discussion Forums</span>
-                  <span className="text-[#B5B8BD]">Code of Conduct</span>
-                  <span className="text-[#B5B8BD]">Community Resources</span>
-                  <span className="text-[#B5B8BD]">Contributing</span>
-                  <span className="text-[#B5B8BD]">Concurrent mode </span>
-                  <span className="text-[#B5B8BD]">API Reference</span>
-                </Stack>
-              </Grid>
+              </Box>
+              <Box className="py-3" />
             </Grid>
-          </Container>
-        </Box>
-      </div>
-    </>
+            <Grid item md={2.4}>
+              <Box component="h2" sx={{ typography: 'subtitle1', color: 'text.primary', m: 0 }}>
+                Getting Started
+              </Box>
+              <Stack spacing={1} className="py-2">
+                {['Installation', 'Release Notes', 'Upgrade Guide', 'Browser Support', 'Editor Support', 'Dark Mode'].map(
+                  (label) => (
+                    <Box key={label} component="span" sx={muted}>
+                      {label}
+                    </Box>
+                  ),
+                )}
+              </Stack>
+            </Grid>
+            <Grid item md={2.4}>
+              <Box component="h2" sx={{ typography: 'subtitle1', color: 'text.primary', m: 0 }}>
+                Explore
+              </Box>
+              <Stack spacing={1} className="py-2">
+                {['Design Feature', 'Prototyping', 'Design System', 'Pricing', 'Customer', 'Security'].map((label) => (
+                  <Box key={label} component="span" sx={muted}>
+                    {label}
+                  </Box>
+                ))}
+              </Stack>
+            </Grid>
+
+            <Grid item md={2.4}>
+              <Box component="h2" sx={{ typography: 'subtitle1', color: 'text.primary', m: 0 }}>
+                Resource
+              </Box>
+              <Stack spacing={1} className="py-2">
+                {['Best Practice', 'Support', 'Developers', 'Learn Design', "What's New", 'Release'].map((label) => (
+                  <Box key={label} component="span" sx={muted}>
+                    {label}
+                  </Box>
+                ))}
+              </Stack>
+            </Grid>
+
+            <Grid item md={2.4}>
+              <Box component="h2" sx={{ typography: 'subtitle1', color: 'text.primary', m: 0 }}>
+                Community
+              </Box>
+              <Stack spacing={1} className="py-2">
+                {['Discussion Forums', 'Code of Conduct', 'Community Resources', 'Contributing', 'Concurrent mode', 'API Reference'].map(
+                  (label) => (
+                    <Box key={label} component="span" sx={muted}>
+                      {label}
+                    </Box>
+                  ),
+                )}
+              </Stack>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+    </Box>
   )
 }
