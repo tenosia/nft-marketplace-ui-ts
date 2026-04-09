@@ -3,51 +3,68 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import Image from 'next/image'
 import Images from '../../public/images/Images'
 import { useTheme } from '@mui/material/styles'
+import { useMemo, useState } from 'react'
+
+type Creator = {
+  id: string
+  bannerImages: [typeof Images.c1, typeof Images.c2, typeof Images.c3]
+  avatar: typeof Images.profile
+  name: string
+  handle: string
+  description: string
+}
+
+const creatorsData: Creator[] = [
+  {
+    id: 'amaris-pitt',
+    bannerImages: [Images.c1, Images.c2, Images.c3],
+    avatar: Images.profile,
+    name: 'Amaris Pitt',
+    handle: '@amarispitt',
+    description:
+      'X-Metaverse is a Star Wars game based on NFT + blockchain exploration, mining and trading.',
+  },
+  {
+    id: 'dan-jackson',
+    bannerImages: [Images.c1, Images.c2, Images.c3],
+    avatar: Images.profile,
+    name: 'Dan Jackson',
+    handle: '@danjackson',
+    description:
+      'Creating collectible sci-fi artworks for web3 communities with utility-focused holder perks.',
+  },
+  {
+    id: 'sophia-lee',
+    bannerImages: [Images.c1, Images.c2, Images.c3],
+    avatar: Images.profile,
+    name: 'Sophia Lee',
+    handle: '@sophialee',
+    description:
+      'Building animated NFT collections inspired by cyberpunk architecture and futuristic cities.',
+  },
+  {
+    id: 'nathan-yu',
+    bannerImages: [Images.c1, Images.c2, Images.c3],
+    avatar: Images.profile,
+    name: 'Nathan Yu',
+    handle: '@nathanyu',
+    description:
+      'A mixed-media creator focused on rare mints, collaborations, and gamified ownership models.',
+  },
+]
 
 export default function Creators() {
   const theme = useTheme()
+  const [isAscendingSort, setIsAscendingSort] = useState(true)
 
-  const Data = [
-    {
-      img1: Images.c1,
-      img2: Images.c2,
-      img3: Images.c3,
-      img: Images.profile,
-      name: 'Amaris Pitt',
-      description:
-        'X-Metaverse is a Star Wars game based on NFT+ blockchain exploration, mining, trading ...',
-    },
-    {
-      img1: Images.c1,
-      img2: Images.c2,
-      img3: Images.c3,
-      img: Images.profile,
-      name: 'Amaris Pitt',
-      description:
-        'X-Metaverse is a Star Wars game based on NFT+ blockchain exploration, mining, trading ...',
-    },
-    {
-      img1: Images.c1,
-      img2: Images.c2,
-      img3: Images.c3,
-      img: Images.profile,
-      name: 'Amaris Pitt',
-      description:
-        'X-Metaverse is a Star Wars game based on NFT+ blockchain exploration, mining, trading ...',
-    },
-    {
-      img1: Images.c1,
-      img2: Images.c2,
-      img3: Images.c3,
-      img: Images.profile,
-      name: 'Amaris Pitt',
-      description:
-        'X-Metaverse is a Star Wars game based on NFT+ blockchain exploration, mining, trading ...',
-    },
-  ]
+  const sortedCreators = useMemo(() => {
+    return [...creatorsData].sort((a, b) =>
+      isAscendingSort ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name),
+    )
+  }, [isAscendingSort])
 
-  const card = (item: (typeof Data)[0], index: number) => (
-    <Grid item sm={12} xs={12} md={3} key={index} className="p-3">
+  const card = (item: Creator) => (
+    <Grid item sm={12} xs={12} md={6} lg={3} key={item.id} className="p-3">
       <Box
         className="rounded-2xl bg-transparent text-white"
         sx={{
@@ -56,16 +73,21 @@ export default function Creators() {
         }}
       >
         <Box className="flex p-3">
-          <Stack direction="row">
-            <Image src={item.img1} alt="" className="rounded-xl" />
-            <Image src={item.img2} alt="" className="rounded-xl" />
-            <Image src={item.img3} alt="" className="rounded-xl" />
+          <Stack direction="row" spacing={0.75}>
+            {item.bannerImages.map((bannerImage, index) => (
+              <Image
+                key={`${item.id}-banner-${index}`}
+                src={bannerImage}
+                alt={`${item.name} collection preview ${index + 1}`}
+                className="rounded-xl"
+              />
+            ))}
           </Stack>
         </Box>
         <Box className="flex -translate-y-6 items-center justify-center">
           <Image
-            src={item.img}
-            alt=""
+            src={item.avatar}
+            alt={`${item.name} avatar`}
             width={40}
             height={40}
             className="rounded-full"
@@ -77,11 +99,16 @@ export default function Creators() {
               {item.name}
             </Box>
             <Box component="span" className="text-md">
-              @ Creator
+              {item.handle}
             </Box>
           </Box>
           <Box>
-            <Button variant="contained" color="primary" className="mx-2 rounded-3xl">
+            <Button
+              variant="contained"
+              color="primary"
+              className="mx-2 rounded-3xl"
+              aria-label={`Follow ${item.name}`}
+            >
               Follow
             </Button>
           </Box>
@@ -118,6 +145,7 @@ export default function Creators() {
             <Button
               variant="outlined"
               className="my-3 rounded-2xl md:my-0"
+              onClick={() => setIsAscendingSort((previous) => !previous)}
               sx={{
                 borderWidth: 2,
                 borderColor: 'common.white',
@@ -126,12 +154,12 @@ export default function Creators() {
               }}
               endIcon={<KeyboardArrowDownIcon />}
             >
-              sort order
+              sort: {isAscendingSort ? 'A-Z' : 'Z-A'}
             </Button>
           </Box>
         </Box>
         <Box className="py-[8vh]">
-          <Grid container>{Data.map((item, index) => card(item, index))}</Grid>
+          <Grid container>{sortedCreators.map((item) => card(item))}</Grid>
         </Box>
 
         <Box className="flex items-center justify-center py-3" sx={{ color: 'text.primary' }}>
