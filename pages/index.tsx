@@ -6,7 +6,7 @@ import Creators from '../components/Creators/Index'
 import Crypto from '../components/Crypto/Index'
 import Contact from '../components/Contact/Index'
 import Video from '../components/Video/Index'
-import Footer from '../components/Footer/Index'
+import Footer from '../components/Footer/index'
 
 const Home: NextPage = () => {
   return (

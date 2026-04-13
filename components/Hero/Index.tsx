@@ -35,7 +35,7 @@ export default function Hero() {
   const theme = useTheme()
 
   return (
-    <Box sx={{ bgcolor: theme.tenosia.background }}>
+    <Box id="hero" sx={{ bgcolor: theme.tenosia.background }}>
       <Container>
         <Box>
           <Grid container>

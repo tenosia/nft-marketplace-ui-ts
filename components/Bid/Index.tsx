@@ -18,7 +18,7 @@ export default function Bid() {
   }
 
   return (
-    <Box sx={{ bgcolor: theme.tenosia.surface }}>
+    <Box id="bids" sx={{ bgcolor: theme.tenosia.surface }}>
       <Container>
         <Grid container>
           <Grid item md={4} xs={12}>

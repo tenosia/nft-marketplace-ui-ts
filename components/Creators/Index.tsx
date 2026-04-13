@@ -132,7 +132,7 @@ export default function Creators() {
   )
 
   return (
-    <Box sx={{ bgcolor: theme.tenosia.background }}>
+    <Box id="creators" sx={{ bgcolor: theme.tenosia.background }}>
       <Container>
         <Box className="block justify-between py-[15vh] md:flex">
           <Box component="h1" sx={{ typography: 'h4', fontWeight: 700, color: 'text.primary', m: 0 }}>
