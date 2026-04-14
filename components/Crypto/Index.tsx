@@ -7,7 +7,7 @@ export default function Crypto() {
   const theme = useTheme()
 
   return (
-    <Box sx={{ bgcolor: theme.tenosia.background, py: '15vh' }}>
+    <Box id="crypto" sx={{ bgcolor: theme.tenosia.background, py: '15vh' }}>
       <Container>
         <Box sx={{ borderRadius: 2, bgcolor: theme.tenosia.surface }}>
           <Grid container className="py-12">
