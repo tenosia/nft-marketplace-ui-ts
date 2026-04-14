@@ -7,7 +7,7 @@ export default function Contact() {
   const theme = useTheme()
 
   return (
-    <Box sx={{ bgcolor: theme.tenosia.background }}>
+    <Box id="contact" sx={{ bgcolor: theme.tenosia.background }}>
       <Container>
         <Grid container className="py-4">
           <Grid item md={6} xs={12} className="py-4">

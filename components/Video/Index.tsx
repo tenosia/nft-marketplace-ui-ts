@@ -7,7 +7,7 @@ export default function Video() {
   const theme = useTheme()
 
   return (
-    <Box sx={{ bgcolor: theme.tenosia.background }}>
+    <Box id="video" sx={{ bgcolor: theme.tenosia.background }}>
       <Container>
         <Box className="py-5">
           <Box
